@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>LogIn</title>
+    <link rel="icon" type="image/x-icon" href="./public/fav.avif" />
+  </head>
+  <body>
+    <!--lg:min-width-->
+    <section class="min-h-screen flex lg:bg-rose-100/75">
+      <section class="w-1/2">
+        <h2 class="font-bold text-3xl text-rose-800">Iniciar Sesión</h2>
+      </section>
+
+      <form action="" class="flex flex-col gap-4">
+        <input
+          class="p-2 rounded-lg"
+          type="text"
+          name="email"
+          id=""
+          placeholder="ejemplo@gmail.com"
+        />
+        <input
+          class="p-2 rounded-lg"
+          type="password"
+          name="password"
+          id=""
+          placeholder="******"
+        />
+        <button
+          class="transition ease-in-out delay-150 bg-[#E9B2B1] hover:-translate-y-1 hover:scale-110 hover:bg-[#FED0D1] duration-200 rounded-lg p-2"
+        >
+          Iniciar Sesión
+        </button>
+        <section class="mt-10 grid grid-cols-3 items-center text-gray-400">
+          <hr class="border-gray-400" />
+          <p class="text-center txt-sm">Ó</p>
+          <hr class="border-gray-400" />
+        </section>
+      </form>
+
+      <section class="mt-3 text-xs flex justify-between items-center">
+        <p>¿No tienes cuenta aún? ¡Crea una ahora!</p>
+        <button
+          class="py-2 px-5 bg-white rounded-lg font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-[#9F1239] hover:text-white"
+        >
+          Registrate
+        </button>
+      </section>
+      <section class="p-2 w-1/2 flex">
+        <img class="rounded-lg" src="./public/fondo2.jpg" alt="" />
+      </section>
+    </section>
+  </body>
+</html>
