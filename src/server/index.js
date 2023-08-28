@@ -4,6 +4,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
+import generalRoutes from "./routes/general.routes.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +17,8 @@ app.use(cookieParser());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../client")));
+
+app.use(generalRoutes);
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
