@@ -5,11 +5,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import generalRoutes from "./routes/general.routes.js";
+import { realTimeServer } from "./socket/realTime.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 const httpServer = createServer(app);
 // Inicio parseadores
+
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
@@ -24,4 +26,5 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
 
+realTimeServer(httpServer);
 // todo: Inicializar servidor en tiempo real
