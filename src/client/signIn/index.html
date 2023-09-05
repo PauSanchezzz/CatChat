@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+
+    <title>Regístrate</title>
+    <link rel="icon" type="image/x-icon" href="../public/fav.avif" />
+  </head>
+  <body class="grid grid-cols-2 lg:bg-rose-100/75 w-full">
+    <main class="ms-28 flex flex-col justify-center">
+      <!--justify-self-end-->
+      <section class="flex flex-col gap-5">
+        <h2 class="font-extrabold text-3xl text-rose-800 text-center">
+          Regístrate
+        </h2>
+        <form action="" class="flex flex-col gap-4">
+          <label class="text-rose-800 font-bold" for="email">Correo:</label>
+          <input
+            class="text-center p-2 rounded-lg border-2 border-rose-300"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="ejemplo@gmail.com"
+            required
+          />
+          <label class="text-rose-800 font-bold" for="password"
+            >Contraseña:</label
+          >
+          <input
+            class="text-center p-2 rounded-lg border-2 border-rose-300"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="••••••••••"
+            required
+          />
+          <label class="text-rose-800 font-bold" for="user"
+            >Nombre de usuario:</label
+          >
+          <input
+            class="text-center p-2 rounded-lg border-2 border-rose-300"
+            type="user"
+            name="user"
+            id="user"
+            placeholder="Ejemplo: Oreo, Bigotes"
+            required
+          />
+          <label class="text-rose-800 font-bold" for="raza"
+            >Seleccione su raza:</label
+          >
+          <select
+            name="raza"
+            type="raza"
+            id="listRazas"
+            class="text-center p-2 rounded-lg border-2 border-rose-300"
+            required
+          ></select>
+
+          <div class="flex justify-center">
+            <button
+              id="boton"
+              class="px-10 py-2 transition ease-in-out delay-150 bg-[#E9B2B1] hover:-translate-y-1 hover:scale-110 hover:bg-[#9F1239] hover:text-white duration-200 rounded-lg"
+            >
+              Regístrate
+            </button>
+          </div>
+        </form>
+        <section class="grid grid-cols-3 items-center text-gray-400">
+          <hr class="border-gray-400" />
+          <p class="text-center txt-sm">Ó</p>
+          <hr class="border-gray-400" />
+        </section>
+        <section class="text-xs flex justify-around items-center">
+          <p>¿Ya tienes una cuenta? ¡Ingresa ahora!</p>
+          <button
+            class="py-2 px-5 bg-white rounded-lg font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:bg-[#9F1239] hover:text-white"
+          >
+            <a href="../index.html"> Iniciar Sesión</a>
+          </button>
+        </section>
+      </section>
+    </main>
+    <section class="p-2 flex justify-end">
+      <img class="rounded-lg" src="../public/fondoRegistro.jpg" alt="" />
+    </section>
+    <script src="./script.js"></script>
+  </body>
+</html>

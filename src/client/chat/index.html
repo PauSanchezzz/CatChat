@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.js"></script>
+    <title>Chat</title>
+    <link rel="icon" type="image/x-icon" href="../public/fav.avif" />
+  </head>
+  <body class="bg-rose-100/75 min-h-screen bg-[#FFEAEC]">
+    <header
+      class="bg-[#FFC6C5] font-bold py-2 grid grid-cols-5 text-3xl border-2 border-rose-900"
+    >
+      <div class="col-span-2 flex justify-center">
+        <img class="w-30 h-24" src="../public/saludo.png" alt="" />
+      </div>
+      <div
+        class="font-extrabold col-span-3 flex justify-start items-center text-[#710926]"
+      >
+        Bienvenido al Michi Chat
+      </div>
+    </header>
+
+    <section class="grid grid-cols-5">
+      <!---->
+      <section class="mt-3 ml-12 col-span-2 h-full rounded-2xl">
+        <section id="conversaciones" class="grid grid-rows-6 gap-4">
+          <section class="grid grid-cols-5 mb-2">
+            <button
+              class="mb-2 place-items-start justify-start items-center transition ease-in-out delay-150 hover:-translate-y-1 w-[4em] h-[4em] font-extrabold text-l text-rose-800 text-center col-span-1"
+              id="salir"
+            >
+              <img
+                class="rounded-full border-2 border-rose-900"
+                src="../public/salir.jpg"
+                alt=""
+              />Salir
+            </button>
+
+            <h2
+              class="font-extrabold text-3xl text-rose-800 text-center grid place-content-center col-span-3"
+            >
+              Conversaciones
+            </h2>
+          </section>
+        </section>
+      </section>
+
+      <main
+        class="relative flex flex-col ml-20 mr-6 mt-5 col-span-3 bg-[#E3B8B7] h-[34.5rem] rounded-2xl border-2 border-rose-900"
+      >
+        <header
+          class="m-3 bg-rose-200 p-2 rounded-xl grid grid-cols-4 border-2 border-rose-900"
+          id="raza-chat"
+        ></header>
+
+        <section
+          class="relative px-6 h-[23rem] max-h-full text-black"
+          data-mdb-perfect-scrollbar="true"
+        >
+          <article id="all-message"></article>
+        </section>
+        <footer
+          class="absolute rigth-0 bottom-0 left-0 grid grid-cols-5 w-full"
+          id="jksjsj"
+        >
+          <input
+            class="col-start-1 col-end-5 m-5 mr-[6em] flex justify-start items-center w-full border-2 border-rose-900 p-3 rounded-2xl w-full"
+            type="text"
+            id="message"
+            placeholder="¡Escriba aquí su mensaje!"
+          />
+          <div
+            class="col-start-5 flex justify-end items-center mr-2 transition ease-in-out delay-150 hover:-translate-y-2"
+          >
+            <button class="w-[3.5em] h-[3.5em] me-5" id="send">
+              <img src="../public/huella.png" alt="" />
+            </button>
+          </div>
+        </footer>
+      </main>
+    </section>
+    <script src="./script.js"></script>
+  </body>
+</html>
