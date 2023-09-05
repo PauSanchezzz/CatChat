@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
-      rel="stylesheet"
-    />
+    <script src="https://cdn.socket.io/4.7.2/socket.io.js"></script>
     <title>Chat</title>
     <link rel="icon" type="image/x-icon" href="../public/fav.avif" />
   </head>
@@ -66,22 +60,7 @@
           class="relative px-6 h-[23rem] max-h-full text-black"
           data-mdb-perfect-scrollbar="true"
         >
-          <article>
-            <p
-              class="pb-2 pl-6 font-extrabold text-l text-rose-800 text-center col-span-1 underline decoration-wavy decoration-rose-900/60"
-            >
-              Oreo
-            </p>
-
-            <p
-              class="bg-[#FFDEE2] rounded-tr-3xl rounded-bl-3xl px-4 py-2 border-2 border-rose-900 font-medium italic"
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-              saepe doloribus. Ratione voluptas accusamus veniam necessitatibus
-              alias suscipit libero ex vel sed molestiae, recusandae officia
-              voluptatum, mollitia, asperiores eligendi quasi?
-            </p>
-          </article>
+          <article id="all-message"></article>
         </section>
         <footer
           class="absolute rigth-0 bottom-0 left-0 grid grid-cols-5 w-full"
@@ -90,6 +69,7 @@
           <input
             class="col-start-1 col-end-5 m-5 mr-[6em] flex justify-start items-center w-full border-2 border-rose-900 p-3 rounded-2xl w-full"
             type="text"
+            id="message"
             placeholder="¡Escriba aquí su mensaje!"
           />
           <div
@@ -102,7 +82,6 @@
         </footer>
       </main>
     </section>
+    <script src="./script.js"></script>
   </body>
-  <script src="./script.js"></script>
-  <script src="/socket.io/socket.io.js" type="js"></script>
 </html>

@@ -1,4 +1,5 @@
-//import { response } from "express";
+const socket = io();
+const btnSend = document.getElementById("send");
 
 const conversaciones = document.getElementById("conversaciones");
 
@@ -67,8 +68,52 @@ btnSalir.addEventListener("click", (event) => {
   Swal.fire("¡Vuelva Pronto!", "", "success").then(function () {
     window.location = "../index.html";
   });
-  /*   const si = confirm("¡Vuelva Pronto!");
-  if (si) {
-    window.location = "/index.html";
-  } */
 });
+
+const main = async () => {
+  let socketNameSpace;
+  const user = await getUserCookie();
+  console.log("user.nombreraza  " + (await user.nombreraza));
+  if (user.nombreraza === "Tuxedo") {
+    socketNameSpace = io("/Tuxedo");
+  }
+  if (user.nombreraza === "Bombay") {
+    socketNameSpace = io("/Bombay");
+  }
+  if (user.nombreraza === "Siames") {
+    socketNameSpace = io("/Siames");
+  }
+  if (user.nombreraza === "Calico") {
+    socketNameSpace = io("/Calico");
+  }
+  if (user.nombreraza === "Carey") {
+    socketNameSpace = io("/Carey");
+  }
+  btnSend.addEventListener("click", () => {
+    const message = document.getElementById("message").value;
+
+    socketNameSpace.emit("send-message", {
+      user: user.nomusuario,
+      message: message,
+    });
+  });
+  socketNameSpace.on("sendToAll", ({ user, message }) => {
+    //console.log("front user: " + user + " message " + message);
+    const allMessages = document.getElementById("all-message");
+    allMessages.innerHTML += `
+               <p
+              class="pb-2 pl-6 font-extrabold text-l text-rose-800 text-center col-span-1 underline decoration-wavy decoration-rose-900/60"
+            >
+              ${user}
+            </p>
+
+            <p
+              class="bg-[#FFDEE2] rounded-tr-3xl rounded-bl-3xl px-4 py-2 border-2 border-rose-900 font-medium italic"
+            >${message}
+            </p>`;
+  });
+  socket.on("connect", () => {
+    console.log("socket io front " + socket.id);
+  });
+};
+main();
