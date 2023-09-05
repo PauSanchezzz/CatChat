@@ -4,7 +4,6 @@ import { getUserLogin } from "../services/user.services.js";
 
 export const login = async (req, res) => {
   const { correo, clave } = req.body;
-  //correo.toLowerCase();
   const userLogin = await getUserLogin(correo, clave);
   if (userLogin === false) {
     return res.status(400).json({ message: "Usuario Incorrecto" });
@@ -14,11 +13,8 @@ export const login = async (req, res) => {
 
 export const signin = async (req, res) => {
   const { correo, clave, nomUsuario, raza } = req.body;
-  //correo.toLowerCase();
-  //console.log("correo lowe case: " + correo);
 
   const newUser = await create(correo, clave, nomUsuario, raza);
-  console.log("new user " + newUser);
   if (newUser === false) {
     return res.status(400).json({ message: "Usuario no creado" });
   }

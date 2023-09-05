@@ -19,7 +19,6 @@ export const create = async (correo, clave, nomUsuario, raza) => {
     nomUsuario,
     raza
   );
-  console.log("userCreated " + userCreated);
   if (userCreated.severity) {
     return false;
   }
