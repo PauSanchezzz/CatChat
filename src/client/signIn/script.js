@@ -25,12 +25,7 @@ boton.addEventListener("click", (event) => {
 });
 /* */
 
-const sendData = async () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const user = document.getElementById("user").value;
-  const raza = document.getElementById("listRazas").value;
-
+const validateData = (email, password, user, raza) => {
   if (!email || !password || !user || !raza) {
     //alert("Por favor, complete todos los campos antes de crear el usuario.");
     Swal.fire(
@@ -38,89 +33,76 @@ const sendData = async () => {
       "Por favor, complete todos los campos para crear el usuario.",
       "error"
     );
-    return;
+    return false;
   }
 
-  Swal.fire({
-    title: "¿Esta seguro que desea crear el usuario?",
-    text: "",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#A6E582",
-    cancelButtonColor: "#E86868",
-    confirmButtonText: "Crear",
-    cancelButtonText: "Cancelar",
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      const res = await fetch("http://localhost:3000/api/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          correo: email,
-          clave: password,
-          nomUsuario: user,
-          raza: raza,
-        }),
-      });
-      if (!res.ok) {
-        Swal.fire(
-          "Error",
-          "El usuario ya se encuentra registrado.",
-          "error"
-        ).then(function () {
-          window.location = "./index.html";
-        });
-      } else {
-        document.cookie = `email=${email};max-age=3600;path=/chat`;
-        // alert("El usuario fue creado");
+  let vEmail = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
 
-        // window.location = "/chat";
-        Swal.fire("¡Bienvenido!", "El usuario fue creado.", "success").then(
-          function () {
-            window.location = "/chat";
-          }
-        );
-      }
-    } else {
-      /*  alert("El usuario no fue creado");
+  let validate = vEmail.test(email);
+  if (!validate) {
+    Swal.fire("Error", "La estructura del correo es incorrecta.", "error");
+    return false;
+  }
+  return true;
+};
+
+const sendData = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const user = document.getElementById("user").value;
+  const raza = document.getElementById("listRazas").value;
+
+  if (validateData(email, password, user, raza)) {
+    Swal.fire({
+      title: "¿Esta seguro que desea crear el usuario?",
+      text: "",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#A6E582",
+      cancelButtonColor: "#E86868",
+      confirmButtonText: "Crear",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await fetch("http://localhost:3000/api/auth/signin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            correo: email,
+            clave: password,
+            nomUsuario: user,
+            raza: raza,
+          }),
+        });
+        if (!res.ok) {
+          Swal.fire(
+            "Error",
+            "El usuario ya se encuentra registrado.",
+            "error"
+          ).then(function () {
+            window.location = "./index.html";
+          });
+        } else {
+          document.cookie = `email=${email};max-age=3600;path=/chat`;
+          // alert("El usuario fue creado");
+
+          // window.location = "/chat";
+          Swal.fire("¡Bienvenido!", "El usuario fue creado.", "success").then(
+            function () {
+              window.location = "/chat";
+            }
+          );
+        }
+      } else {
+        /*  alert("El usuario no fue creado");
 
       window.location = "./index.html"; */
-      Swal.fire("Error", "Usuario no creado.", "error").then(function () {
-        window.location = "./index.html";
-      });
-    }
-  });
-
-  // crear cookie
-  /*   const si = confirm("¿Esta seguro que desea crear el usuario?");
-  if (si) {
-    const res = await fetch("http://localhost:3000/api/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        correo: email,
-        clave: password,
-        nomUsuario: user,
-        raza: raza,
-      }),
+        Swal.fire("Error", "Usuario no creado.", "error").then(function () {
+          window.location = "./index.html";
+        });
+      }
     });
-    if (!res.ok) {
-      emails.value = "";
-      passwords.value = "";
-      users.value = "";
-      razas.value = "";
-    } else {
-      document.cookie = `email=${email};max-age=3600;path=/chat`;
-      alert("El usuario fue creado");
-      window.location = "/chat";
-    }
-  } else {
-    alert("El usuario no fue creado");
-
-    window.location = "./index.html";
-  }*/
+  }
 };

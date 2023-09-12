@@ -1,0 +1,7 @@
+#all-message::-webkit-scrollbar{
+  width: 5px;
+}
+#all-message::-webkit-scrollbar-thumb{
+  background: #710926;
+  border-radius: 50px;
+}
