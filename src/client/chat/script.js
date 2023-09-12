@@ -9,23 +9,6 @@ const getRazas = async () => {
   return data;
 };
 
-const cargarDatos = async () => {
-  const razas = await getRazas();
-  razas.forEach((element) => {
-    const section = document.createElement("section");
-    section.innerHTML = `
-       <section
-              class="p-2 border-2 border-rose-900 bg-[#E3B8B7] rounded-xl text-rose-800 flex justify-center items-center font-bold"
-            >
-         Grupo ${element.nombreraza}
-         <img class="w-[3em] h-[3em] mx-5 rounded-full border-2 border-rose-900" src="${element.imagen}" alt=""/>
-       </section>`;
-    conversaciones.appendChild(section);
-  });
-};
-
-cargarDatos();
-
 //Chat
 const getUserCookie = async () => {
   let cookieValue = document.cookie.replace(
@@ -40,6 +23,23 @@ const getUserCookie = async () => {
   const data = await res.json();
   return data.usuario[0];
 };
+
+const cargarDatos = async () => {
+  const razas = await getRazas();
+  razas.forEach((element) => {
+    const section = document.createElement("section");
+    section.innerHTML = `
+       <section
+              class="hover:pointer p-2 border-2 border-rose-900 bg-[#E3B8B7] rounded-xl text-rose-800 flex justify-center items-center font-bold"
+              id="${element.nombreraza}"
+              >
+        <p>Grupo ${element.nombreraza}</p> 
+         <img class="w-[3em] h-[3em] mx-5 rounded-full border-2 border-rose-900" src="${element.imagen}" alt=""/>
+       </section>`;
+    conversaciones.appendChild(section);
+  });
+};
+cargarDatos();
 
 const title = document.getElementById("raza-chat");
 const datosChat = async () => {
@@ -89,16 +89,27 @@ const main = async () => {
   if (user.nombreraza === "Carey") {
     socketNameSpace = io("/Carey");
   }
-  btnSend.addEventListener("click", () => {
-    const message = document.getElementById("message").value;
+  const messageInput = document.getElementById("message");
 
+  const sendMessage = () => {
+    const message = messageInput.value;
     socketNameSpace.emit("send-message", {
       user: user.nomusuario,
       message: message,
     });
+    messageInput.value = "";
+  };
+
+  btnSend.addEventListener("click", () => {
+    sendMessage();
   });
+  messageInput.addEventListener("keydown", () => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  });
+
   socketNameSpace.on("sendToAll", ({ user, message }) => {
-    //console.log("front user: " + user + " message " + message);
     const allMessages = document.getElementById("all-message");
     allMessages.innerHTML += `
                <p
@@ -117,3 +128,34 @@ const main = async () => {
   });
 };
 main();
+
+const validateRaza = async () => {
+  const razas = await getRazas();
+  const user = await getUserCookie();
+  razas.forEach((element) => {
+    const section = document.getElementById(element.nombreraza);
+    section.addEventListener("click", () => {
+      if (section.id === user.nombreraza) {
+        const succes = Swal.fire({
+          title: "¡Este es tu chat!",
+          text: "Tienes permiso.",
+          imageUrl: element.imagen,
+          imageWidth: 170,
+          imageHeight: 170,
+          imageAlt: "imagen grupo",
+        });
+        return succes;
+      }
+      Swal.fire({
+        title: "¡Este no es tu chat!",
+        text: "No tienes permiso.",
+        imageUrl: element.imagen,
+        imageWidth: 170,
+        imageHeight: 170,
+        imageAlt: "imagen grupo",
+      });
+    });
+  });
+};
+
+validateRaza();

@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.socket.io/4.7.2/socket.io.js"></script>
     <title>Chat</title>
+    <link rel="stylesheet" href="../public/index.css" />
     <link rel="icon" type="image/x-icon" href="../public/fav.avif" />
   </head>
   <body class="bg-rose-100/75 min-h-screen bg-[#FFEAEC]">
@@ -60,7 +61,10 @@
           class="relative px-6 h-[23rem] max-h-full text-black"
           data-mdb-perfect-scrollbar="true"
         >
-          <article id="all-message"></article>
+          <article
+            class="max-h-full overflow-auto pr-5"
+            id="all-message"
+          ></article>
         </section>
         <footer
           class="absolute rigth-0 bottom-0 left-0 grid grid-cols-5 w-full"
