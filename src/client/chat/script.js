@@ -30,7 +30,7 @@ const cargarDatos = async () => {
     const section = document.createElement("section");
     section.innerHTML = `
        <section
-              class="hover:pointer p-2 border-2 border-rose-900 bg-[#E3B8B7] rounded-xl text-rose-800 flex justify-center items-center font-bold"
+              class="max-lg:hidden hover:pointer p-2 border-2 border-rose-900 bg-[#E3B8B7] rounded-xl text-rose-800 flex justify-center items-center font-bold"
               id="${element.nombreraza}"
               >
         <p>Grupo ${element.nombreraza}</p> 
@@ -46,15 +46,15 @@ const datosChat = async () => {
   const user = await getUserCookie();
   if (user) {
     title.innerHTML = ` 
-    <img class="w-[3.5em] h-[3.5em] mx-5 rounded-full border-2 border-rose-900" 
+    <img class="max-lg:mx-2 my-auto w-[3.5em] h-[3.5em] mx-5 rounded-full border-2 border-rose-900" 
     src="${user.imagen}" alt="" />
     <h1 class="col-span-2 text-rose-800 flex justify-center items-center font-bold" > 
     Grupo ${user.nombreraza}</h1> `;
   } else {
     title.innerHTML = ` 
-    <img class="w-[3.5em] h-[3.5em] mx-5 rounded-lg border-2 border-rose-900" 
+    <img class="lg:mx-2, w-[3.5em] h-[3.5em] mx-5 rounded-lg border-2 border-rose-900" 
     src="../public/perro.jpg" alt="" />
-    <h1 class="col-span-2 text-rose-800 flex justify-center items-center font-bold" > 
+    <h1 class="lg:grid col-span-3 ml-1,col-span-2 text-rose-800 flex justify-center items-center font-bold" > 
     ¡Usted no tiene permisos! </h1> `;
   }
 };
