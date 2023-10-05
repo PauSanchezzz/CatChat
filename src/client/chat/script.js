@@ -4,7 +4,9 @@ const btnSend = document.getElementById("send");
 const conversaciones = document.getElementById("conversaciones");
 
 const getRazas = async () => {
-  const res = await fetch("http://localhost:3000/api/razasGatos");
+  const res = await fetch(
+    "https://catchat-production-db34.up.railway.app/api/razasGatos"
+  );
   const data = await res.json();
   return data;
 };
@@ -16,7 +18,9 @@ const getUserCookie = async () => {
     /email=([^;]*)/,
     "$1"
   );
-  const res = await fetch(`http://localhost:3000/api/user/${cookieValue}`);
+  const res = await fetch(
+    `https://catchat-production-db34.up.railway.app/api/user/${cookieValue}`
+  );
   if (!res.ok) {
     return null;
   }

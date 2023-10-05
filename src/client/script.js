@@ -17,16 +17,19 @@ const sendData = async () => {
     );
     return;
   }
-  const res = await fetch("http://localhost:3000/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      correo: email,
-      clave: password,
-    }),
-  });
+  const res = await fetch(
+    "https://catchat-production-db34.up.railway.app/api/auth/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        correo: email,
+        clave: password,
+      }),
+    }
+  );
   if (res.ok) {
     document.cookie = `email=${email};max-age=3600;path=/chat`;
     // alert("¡Bienvenido de Nuevo!");

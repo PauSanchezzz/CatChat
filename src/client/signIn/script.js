@@ -1,5 +1,7 @@
 const getRazas = async () => {
-  const res = await fetch("http://localhost:3000/api/razasGatos");
+  const res = await fetch(
+    "https://catchat-production-db34.up.railway.app/api/razasGatos"
+  );
   const data = await res.json(res);
   return await data;
 };
@@ -64,18 +66,21 @@ const sendData = async () => {
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await fetch("http://localhost:3000/api/auth/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            correo: email,
-            clave: password,
-            nomUsuario: user,
-            raza: raza,
-          }),
-        });
+        const res = await fetch(
+          "https://catchat-production-db34.up.railway.app/api/auth/signin",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              correo: email,
+              clave: password,
+              nomUsuario: user,
+              raza: raza,
+            }),
+          }
+        );
         if (!res.ok) {
           Swal.fire(
             "Error",

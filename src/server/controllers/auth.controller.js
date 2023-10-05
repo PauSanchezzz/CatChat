@@ -26,7 +26,6 @@ export const getOne = async (req, res) => {
 
   const user = await getUser(correo);
   const vacio = Object.keys(user).length === 0;
-  console.log("vacio" + vacio);
   if (vacio) {
     return res.status(404).json({ message: "Usuario no encontrado" });
   }
