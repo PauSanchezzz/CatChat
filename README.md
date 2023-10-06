@@ -42,4 +42,8 @@ npm install
 ```bash
 npm start
 ```
+![Imagen proyecto](/src/client/public/cat1.png)
+![Imagen proyecto](/src/client/public/cat2.png)
+![Imagen proyecto](/src/client/public/cat3.png)
+
 
