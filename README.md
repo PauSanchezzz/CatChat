@@ -2,6 +2,10 @@
 
 Bienvenido a Chat de Gatos, una aplicación de chat exclusiva para amantes de los gatos. Aquí, los usuarios pueden registrarse con su correo electrónico, contraseña y nombre de usuario, y luego elegir entre cinco razas de gatos: Bombay, Tuxedo, Siames, Calico y Carey.
 
+<div align="center">
+  <video src="https://github.com/PauSanchezzz/CatChat/assets/122471751/c72860e3-fb27-4038-91a7-941cc3e3bf28" width="400" />
+</div>
+
 ## Características clave
 
 - **Registro de Usuarios**: Los usuarios pueden crear una cuenta proporcionando su correo electrónico, contraseña y nombre de usuario. Se verifica si ya existe un usuario con el mismo nombre de usuario o correo electrónico.
@@ -42,6 +46,7 @@ npm install
 ```bash
 npm start
 ```
+
 ![Imagen proyecto](/src/client/public/cat1.png)
 ![Imagen proyecto](/src/client/public/cat2.png)
 ![Imagen proyecto](/src/client/public/cat3.png)
